@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_main"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Home" />
+        <item
+            android:id="@+id/menu_list"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Your Haiku" />
+        <item
+            android:id="@+id/menu_cal"
+            android:icon="@android:drawable/ic_menu_my_calendar"
+            android:title="Calendar" />
+        <item
+            android:id="@+id/menu_meiku"
+            android:icon="@android:drawable/ic_menu_view"
+            android:title="Famous Haiku" />
+    </group>
+
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:title="Settings"/>
+            <item
+                android:id="@+id/nav_help"
+                android:title="Help"/>
+            <item
+                android:id="@+id/nav_about"
+                android:title="About"/>
+        </menu>
+    </item>
+</menu>

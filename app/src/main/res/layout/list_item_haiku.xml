@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><!-- リストビューの各要素に表示させる俳句のレイアウト定義。俳句本文と作者を持つ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_haiku"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:paddingTop="4dp"
+        android:textColor="#666666"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="32dp"
+        android:paddingBottom="4dp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"/>
+
+</LinearLayout>
