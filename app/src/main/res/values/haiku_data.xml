@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="haiku">
+    <string-array name="haiku_array">
         <item>古池や 蛙飛こむ 水のおと,松尾芭蕉</item>
         <item>閑さや 岩にしみ入る 蝉の声,松尾芭蕉</item>
         <item>柿くへば 鐘が鳴るなり 法隆寺,正岡子規</item>

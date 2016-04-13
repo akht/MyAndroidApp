@@ -43,22 +43,8 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-
-        String[] haikuArray = {
-                "古池や 蛙飛こむ 水のおと,松尾芭蕉",
-                "閑さや 岩にしみ入る 蝉の声,松尾芭蕉",
-                "柿くへば 鐘が鳴るなり 法隆寺,正岡子規",
-                "夏草や 兵共が ゆめの跡,松尾芭蕉",
-                "秋深き 隣は何を する人ぞ,松尾芭蕉",
-                "海に出て 木枯らし帰る ところなし,山口誓子",
-                "目には青葉 山ほととぎす 初鰹,山口素堂",
-                "菜の花や 月は東に 日は西に,与謝蕪村",
-                "五月雨を 集めて早し 最上川,松尾芭蕉",
-                "露の世は 露の世ながら さりながら,小林一茶",
-                "念力の ゆるめば死ぬる 大暑かな,村上鬼城",
-                "この道や 行く人なしに 秋の暮れ,松尾芭蕉"
-        };
-
+        // res/values/haiku_data.xmlからリソースを取得
+        String[] haikuArray = getResources().getStringArray(R.array.haiku_array);
         List<HaikuItem> haikuData = new ArrayList<>();
         for (String s : haikuArray) {
             String[] elem = s.split(",");
