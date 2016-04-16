@@ -1,15 +1,19 @@
 package com.example.android.haikuapp;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ListView;
@@ -23,9 +27,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Fragment
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, new MyTestFragment())
+                    .commit();
+        }
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // FAB
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,29 +51,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // DrawerLayout
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        // res/values/haiku_data.xmlからリソースを取得
-        String[] haikuArray = getResources().getStringArray(R.array.haiku_array);
-        List<HaikuItem> haikuData = new ArrayList<>();
-        for (String s : haikuArray) {
-            String[] elem = s.split(",");
-            HaikuItem item = new HaikuItem();
-            item.setHaikuString(elem[0]);
-            item.setAuthorString(elem[1]);
-
-            haikuData.add(item);
-        }
-
-        HaikuAdapter haikuAdapter = new HaikuAdapter(this);
-        haikuAdapter.setHaikuList(haikuData);
-
-        ListView listView = (ListView) findViewById(R.id.listview_haiku);
-        listView.setAdapter(haikuAdapter);
     }
 
     @Override
@@ -82,5 +80,40 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * A Test Fragment
+     */
+    public static class MyTestFragment extends Fragment {
+
+        public MyTestFragment() {}
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+
+            // res/values/haiku_data.xmlからリソースを取得
+            String[] haikuArray = getResources().getStringArray(R.array.haiku_array);
+            List<HaikuItem> haikuData = new ArrayList<>();
+            for (String s : haikuArray) {
+                String[] elem = s.split(",");
+                HaikuItem item = new HaikuItem();
+                item.setHaikuString(elem[0]);
+                item.setAuthorString(elem[1]);
+
+                haikuData.add(item);
+            }
+
+            HaikuAdapter haikuAdapter = new HaikuAdapter(getContext());
+            haikuAdapter.setHaikuList(haikuData);
+
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            ListView listView = (ListView) rootView.findViewById(R.id.listview_haiku);
+            listView.setAdapter(haikuAdapter);
+
+            return rootView;
+        }
     }
 }
